@@ -10,9 +10,11 @@ import sys
 from django.template.defaulttags import URLNode, csrf_token
 from django.core.urlresolvers import reverse
 from django.conf import settings
+from django.templatetags import static
 
 default_context = {
     'url' : reverse,
+    'static': static.static
 }
 
 default_charset = getattr(settings, 'DEFAULT_CHARSET', 'utf8')
