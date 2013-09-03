@@ -61,6 +61,9 @@ Django settings variable DEFAULT_CHARSET will be used for input & output of temp
 ### default context
 You can inject default context with django settings MAKO_DEFAULT_CONTEXT. It's dict type.
 
+## Note
+* Package name was changed at ver 1.0.2. djangoxmako -> djangox.mako. It uses python namesapce package.
+
 ## TODO
 * consider necessity of django middleware. I don't think it's needed yet.
 * csrf_token_tag()
