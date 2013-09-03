@@ -46,6 +46,15 @@ and planning to make the code below possible. Not implemented yet.
     
     ${csrf_token_tag()}
 
+#### static
+django template
+
+	{% static 'path/to/style.css' %}
+
+djangox-mako
+
+	${static('path/to/style.css')}
+
 ### encoding
 Django settings variable DEFAULT_CHARSET will be used for input & output of templates. if None, 'utf8' will be default.
 
