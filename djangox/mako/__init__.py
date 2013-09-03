@@ -8,12 +8,30 @@ from mako import exceptions
 import os
 import sys
 from django.template.defaulttags import URLNode, csrf_token
-from django.core.urlresolvers import reverse
-from django.conf import settings
+from django.core.urlresolvers import reverse, get_resolver, get_urlconf
 from django.templatetags import static
+from django.template import defaulttags
+import types
+
+def url(view_name, *args, **kwargs):
+    try:
+        return reverse(view_name, args=args, kwargs=kwargs)
+    except:
+        resolver = get_resolver(get_urlconf())
+        for key in resolver.reverse_dict.keys():
+            if isinstance(key, types.FunctionType):
+                name = key.__module__ + '.' + key.__name__
+            else:
+                name = key
+            
+            if name.endswith(view_name):
+                return reverse(name, args=args, kwargs=kwargs)
+        
+        raise
+        
 
 default_context = {
-    'url' : reverse,
+    'url' : url,
     'static': static.static
 }
 
